@@ -1,5 +1,5 @@
 import { useState,useEffect } from 'react'
-import { auth,provider,facebookProvider } from './config.jsx'
+import { auth,provider} from './config.jsx'
 import { signInWithPopup } from 'firebase/auth'
 import './App.css'
 
@@ -19,7 +19,7 @@ function App() {
     setValue(localStorage.getItem("email"));
   })
   const handleClic = () => {
-    signInWithPopup(auth,facebookProvider).then((data) =>{
+    signInWithPopup(auth,provider).then((data) =>{
        setValue(data.user.email)
        setName(data.user.displayName)
        console.log(value)
