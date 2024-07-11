@@ -1,5 +1,5 @@
 import { useState,useEffect } from 'react'
-import { auth,provider } from './config.jsx'
+import { auth,provider,facebookProvider } from './config.jsx'
 import { signInWithPopup } from 'firebase/auth'
 import './App.css'
 
@@ -18,10 +18,22 @@ function App() {
   useEffect(() =>{
     setValue(localStorage.getItem("email"));
   })
+  const handleClic = () => {
+    signInWithPopup(auth,facebookProvider).then((data) =>{
+       setValue(data.user.email)
+       setName(data.user.displayName)
+       console.log(value)
+       console.log(name)
+       localStorage.setItem("email", data.user.email)
+    })
+  };
+  useEffect(() =>{
+    setValue(localStorage.getItem("email"));
+  })
   return (
     <>
       <button onClick={handleClick}>Sign in with Google</button>
-      <button onClick={handleClick}>Sign in with Facebook</button>
+      <button onClick={handleClic}>Sign in with Facebook</button>
     </>
   )
 }
